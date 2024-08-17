@@ -4,9 +4,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { useSelector } from "react-redux";
 import Spinner from "./components/Spinner";
-import ProtectedRoutes from './components/ProtectedRoutes';
-import PublicRoute from './components/PublicRoute';
-
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import PublicRoute from "./components/PublicRoute";
+import ApplyDoctor from "./pages/ApplyDoctor";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -31,8 +31,17 @@ function App() {
               path="/login"
               element={
                 <PublicRoute>
-                  <Login/>
+                  <Login />
                 </PublicRoute>
+              }
+            />
+
+            <Route
+              path="/apply-doctor"
+              element={
+                <ProtectedRoutes>
+                  <ApplyDoctor/>
+                </ProtectedRoutes>
               }
             />
 
@@ -40,13 +49,13 @@ function App() {
               path="/register"
               element={
                 <PublicRoute>
-                  <Register/>
+                  <Register />
                 </PublicRoute>
               }
             />
           </Routes>
         )}
-      </BrowserRouter> 
+      </BrowserRouter>
     </>
   );
 }
