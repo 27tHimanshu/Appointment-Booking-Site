@@ -1,8 +1,8 @@
 import React from "react";
 import "../styles/LayoutStyles.css";
 import { adminMenu, userMenu } from "../Data/data";
-import { Link, Navigate, useLocation ,useNavigate} from "react-router-dom";
-import {message} from 'antd';
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { message, Badge } from "antd";
 import { useSelector } from "react-redux";
 
 const Layout = ({ children }) => {
@@ -10,12 +10,11 @@ const Layout = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-   
-  const handleLogout= ()=>{
-    localStorage.clear()
-    message.success('Logout successfully ')
-    navigate('/login');
- }
+  const handleLogout = () => {
+    localStorage.clear();
+    message.success("Logout successfully ");
+    navigate("/login");
+  };
   // menu render
   const SidebarMenu = user?.isAdmin ? adminMenu : userMenu;
 
@@ -41,15 +40,23 @@ const Layout = ({ children }) => {
                 );
               })}
               <div className={`menu-item "}`} onClick={handleLogout}>
-                <i className=' fa-solid fa-right-from-bracket '></i>
-                <Link to='/login'> Logout </Link>
+                <i className=" fa-solid fa-right-from-bracket "></i>
+                <Link to="/login"> Logout </Link>
               </div>
             </div>
           </div>
           <div className="content">
             <div className="header">
-              <div className="header-content">
-                <i class="fa-solid fa-bell "></i>
+              <div className="header-content"  style = {{cursor:'pointer'}} >
+                <Badge
+                  count={user?.notification.length}
+                  onClick={() => {
+                    navigate("/notification");
+                  }}
+                 
+                >
+                  <i className="fa-solid fa-bell"></i>
+                </Badge>
                 <Link to="/profile"> {user?.name}</Link>
               </div>
             </div>
