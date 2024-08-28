@@ -1,15 +1,24 @@
-const express = require('express')
+const express = require("express");
 const authMiddleware = require("../middlewares/authMiddleware");
-const { getAllUserController, getAllDoctorsController } = require('../controllers/adminCtrl');
+const {
+  getAllUserController,
+  getAllDoctorsController,
+  changeAccountStatusController,
+} = require("../controllers/adminCtrl");
 
 const router = express.Router();
 
-// get method || users 
+// get method || users
 
-router.get('/getAllUsers',authMiddleware,getAllUserController)
+router.get("/getAllUsers", authMiddleware, getAllUserController);
 
-// get method || doctors 
-router.get('/getAllDoctors',authMiddleware, getAllDoctorsController)
+// get method || doctors
+router.get("/getAllDoctors", authMiddleware, getAllDoctorsController);
 
-
-module.exports=router;
+// post method || account status
+router.post(
+  "/changeAccountStatus",
+  authMiddleware,
+  changeAccountStatusController
+);
+module.exports = router;
