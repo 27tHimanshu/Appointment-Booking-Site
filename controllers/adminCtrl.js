@@ -1,10 +1,49 @@
 
-const getAllUserController = ()=>{
 
+const doctorModel=require('../models/doctorModel')
+const userModel=require('../models/userModels')
+const { use } = require('../routes/adminRoutes')
+
+const getAllUserController = async (req,res)=>{
+    try{
+        const users=await userModel.find({})
+        res.status(200).send({
+            success:true,
+            message:'user data',
+            data: users
+        });
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).send({
+            success:false,
+            message:'error while fetching users ',
+            error ,
+        });
+
+    }
+       
 }
 
-const getAllDoctorsController =()=>{
+const getAllDoctorsController = async(req,res)=>{
+     try{
+        const doctors = await doctorModel.find({})
+        res.status(200).send({
+            message:' Doctors data list',
+            success:true,
+            data : doctors
+        })
+     }
+     catch(error){
+        console.log(error);
+        res.status(500).send({
+            message:"error while getting data",
+            success:false,
+            error
+        })
 
+     }
+        
 }
 
 module.exports = {getAllDoctorsController,getAllUserController}
