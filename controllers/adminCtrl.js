@@ -57,7 +57,7 @@ const changeAccountStatusController = async (req, res) => {
         });
 
         // Update the user's isDoctor field based on the status
-        user.isDoctor=== 'approved' ? true : false;
+        user.isDoctor = status === 'approved' ? true : false;
         await user.save();
 
         res.status(201).send({

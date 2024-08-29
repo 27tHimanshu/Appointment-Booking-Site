@@ -167,6 +167,16 @@ const deleteAllNotificationController= async(req,res)=>{
    }
 }
 
+const getAllDocController=async (req,res)=>{
+  try{
+
+  }
+  catch(error){
+    
+  }
+    
+}
+
 
 module.exports = {
   loginController,
@@ -175,4 +185,5 @@ module.exports = {
   applyDoctorController,
   getAllNotificationController,
   deleteAllNotificationController,
+  getAllDocController,
 };

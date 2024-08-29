@@ -1,44 +1,54 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { Col, Form, Input, Row ,TimePicker,message} from "antd";
+import { Col, Form, Input, Row, TimePicker, message } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {showLoading,hideLoading} from '../redux/features/alertSlice'
-import axios from 'axios'
+import { showLoading, hideLoading } from "../redux/features/alertSlice";
+import axios from "axios";
+import moment from "moment";
 
 const ApplyDoctor = () => {
-  const {user}=useSelector(state=>state.user);
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleFinish = async(values) => {
+  const handleFinish = async (values) => {
     console.log(values);
-    try{
-      dispatch(showLoading())
-      const res =await axios.post('/api/v1/user/apply-doctor' ,{...values ,userId:user._id},{
-         headers:{
-          Authorization:`Bearer ${localStorage.getItem('token')}`
-         }
-      })
+    try {
+      dispatch(showLoading());
+      const res = await axios.post(
+        "/api/v1/user/apply-doctor",
+        {
+          ...values,
+          userId: user._id,
+          timings: [
+            moment(values.timings[0]).format('HH:mm'),
+            moment(values.timings[1]).format('HH:mm'),
+          ],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       dispatch(hideLoading());
-      if(res.data.success){
-        navigate('/')
-      }
-      else{
+      if (res.data.success) {
+        message.success(res.data.message);
+        navigate("/");
+      } else {
         message.error(res.data.success);
       }
-
-    }
-    catch(error){
-      console.log(error)
-      message.error('something went wrong ');
+    } catch (error) {
+      console.log(error);
+      message.error("something went wrong ");
     }
   };
 
   return (
     <Layout>
       <h1 className="text-center"> Apply Doctor</h1>
-      
+
       <Form layout="vertical" onFinish={handleFinish} className="m-3">
         <h4> Personal Details </h4>
         <Row gutter={20}>
@@ -114,7 +124,9 @@ const ApplyDoctor = () => {
               label="Specialisation"
               name="specialisation"
               required
-              rules={[{ required: true, message: "Specialisation is required" }]}
+              rules={[
+                { required: true, message: "Specialisation is required" },
+              ]}
             >
               <Input type="text" placeholder="Your specialisation"></Input>
             </Form.Item>
@@ -149,17 +161,16 @@ const ApplyDoctor = () => {
               required
               rules={[{ required: true, message: "Work timings are required" }]}
             >
-            <TimePicker.RangePicker format = "HH:mm" />
+              <TimePicker.RangePicker format="HH:mm" />
             </Form.Item>
           </Col>
         </Row>
 
         <div className="d-flex justify-content-end mb-3">
           <button className="btn btn-primary" type="submit">
-                Submit
+            Submit
           </button>
         </div>
-
       </Form>
     </Layout>
   );
