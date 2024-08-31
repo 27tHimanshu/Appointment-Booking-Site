@@ -18,4 +18,5 @@ router.post("/updateProfile", authMiddleware, updateProfileController);
 
 router.post('/getDoctorById' , authMiddleware , getDoctorByIdController)
 
+
 module.exports = router;
