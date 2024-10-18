@@ -32,6 +32,8 @@ const BookingPage = () => {
 
     //handle availability
     const handleAvailability = async () => {
+        console.log(date)
+        console.log(time)
         try {
             if (!date || !time) {
                 return alert("Date and Time are required.");
@@ -114,10 +116,13 @@ const BookingPage = () => {
                                     setDate(moment(value).format('DD-MM-YYYY'))
                                 }}
                             />
-                            <TimePicker format="HH:mm" className='m-2'
+                            {/* <TimePicker format="HH:mm" className='m-2'
                                 onChange={(value) => {
                                     setTime(moment(value).format('HH:mm'))
                                 }}
+                            /> */}
+                            <input placeholder='Enter time to be checked  ' className='m-2'
+                                onChange={(e) => setTime(e.target.value)} // Directly store time as string
                             />
                             <button className="btn btn-primary m-2" onClick={handleAvailability}>Check Availability</button>
                             <button className="btn btn-dark m-2" onClick={handleBooking}>Book Now</button>

@@ -77,7 +77,7 @@ const ApplyDoctor = () => {
                         <Form.Item label="Experience" name="experience" required rules={[{ required: true }]} className='apply-doc-input'>
                             <Input type='text' placeholder='Your Experience' />
                         </Form.Item>
-                        <Form.Item label="Fees" name="feesPerConsultation" required rules={[{ required: true }]} className='apply-doc-input'>
+                        <Form.Item label="Fees" name="feesPerCunsaltation" required rules={[{ required: true }]} className='apply-doc-input'>
                             <Input type='text' placeholder='Fees Per Consultation' />
                         </Form.Item>
                         <Form.Item label="Start Time" name="startTime" required rules={[{ required: true }]} className='apply-doc-input'>

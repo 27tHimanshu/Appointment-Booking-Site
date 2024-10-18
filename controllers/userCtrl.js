@@ -165,49 +165,21 @@ const bookAppointmentController = async (req, res) => {
     }
 };
 
-// //check Booking availability controller
-// const bookingAvailabilityController = async (req, res) => {
-//     try {
-//         const date = moment(req.body.date, 'DD-MM-YYYY').toISOString();
-//         const fromTime = moment(req.body.time, 'HH:mm').subtract(1, 'hours').toISOString();
-//         const toTime = moment(req.body.time, 'HH:mm').add(1, 'hours').toISOString();
-//         const doctorId = req.body.doctorId;
-//         const appointments = await appointmentModel.find({
-//             doctorId,
-//             date,
-//             time: {
-//                 $gte: fromTime,
-//                 $lte: toTime,
-//             }
-//         })
-//         if (appointments.length > 0) {
-//             return res.status(200).send({
-//                 message: "Slot not available at this time, Check another timing.",
-//                 success: true,
-//             });
-//         }
-//         else {
-//             return res.status(200).send({
-//                 message: "Slot available. Continue booking.",
-//                 success: true,
-//             });
-//         }
-//     } catch (error) {
-//         res.status(500).send({ message: "Error in booking.", success: false, error });
-//     }
-// };
 
 
 
 
 const bookingAvailabilityController = async (req, res) => {
     try {
+        console.log(req.body)
         const date = moment(req.body.date, 'DD-MM-YYYY').toISOString();
         const time = moment(req.body.time, 'HH:mm');
         
         // Define the exact time for checking availability
         const requestedTime = time.toISOString();
         
+        console.log(date);
+        console.log(requestedTime);
         // Check for existing appointments at the exact time or within the one-hour range
         const appointments = await appointmentModel.find({
             doctorId: req.body.doctorId,
