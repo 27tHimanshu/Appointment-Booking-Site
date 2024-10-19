@@ -1,27 +1,26 @@
-# Hospital Management System
-## 💻 App Features
-#### ➢ Register and Login feature.
-#### ➢ Logout feature.
-#### ➢ Feature to apply for doctor in hospital.
-#### ➢ Doctor profile update feature.
-#### ➢ Feature of booking appointment in hospital.
-#### ➢ Notification feature.
-#### ➢ Fully responsive web app.
-## ➤ Hospital Management System is divided into three section: **Admin**, **Doctor** and **Patient**
-### **Admin :**
-#### ➢ Admin has the full access of the app.
-#### ➢ Admin can approve or reject the doctor position.
-#### ➢ Admin can block the user.
+Hospital Management System
+This is a web-based Hospital Management System that I built. It includes features for Admin, Doctor, and Patient roles, allowing efficient management of appointments and profiles. The app is fully functional and responsive.
 
-### **👨‍⚕️Doctor :**
-#### ➢ Doctor can confirm or reject the appointment booked by the patient. 
-#### ➢ Doctor can update their profile like: Booking time, Consultation fee, Specialization etc.
-
-### **Patient :**
-#### ➢ The patient can book an appointment by clicking on any doctor profile.
-#### ➢ Patient can check their appointment update.
-#### ➢ If a user has minimum experience on a particular specialization, he/she can apply for a doctor in hospital.
-
+Features Overview
+User registration and login.
+Logout functionality.
+Doctors can apply to work at the hospital.
+Doctors can update profiles with booking times, consultation fees, and specialties.
+Patients can book appointments with doctors.
+Real-time notifications.
+Fully responsive for all devices.
+Roles in the System
+Admin:
+Full access to the app.
+Can approve or reject doctor applications.
+Can block users.
+Doctor:
+Can confirm or reject patient appointments.
+Can update profile details such as consultation hours, fees, and specialization.
+Patient:
+Can book appointments with doctors.
+Can check appointment statuses.
+Users with relevant experience can apply to become doctors.
 ## Steps to Start the App
 #### ➤ Install the React Dependencies
 #### ➤ Install the Node Dependencies
